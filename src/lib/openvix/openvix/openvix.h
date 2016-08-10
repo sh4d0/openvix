@@ -1,6 +1,8 @@
 #pragma once
-#ifndef HELLOLIB_H
-#define HELLOLIB_H
+#ifndef OPENVIX_H
+#define OPENVIX_H
+
+#include <vix.h>
 
 #ifdef openvix_EXPORTS
 #define OPENVIXAPI __declspec(dllexport)
@@ -8,15 +10,29 @@
 #define OPENVIXAPI __declspec(dllimport)
 #endif
 
-<<<<<<< 28814525bb674016a5fa6ec712e4a8c30f823630
-OPENVIXAPI
-int
-openvix_sum
-(
-    int value1,
-    int value2
-);
+enum {
+    VIX_HANDLE_TYPE_INVALID = 0,
+    VIX_HANDLE_TYPE_HOST,
+    VIX_HANDLE_TYPE_VM,
+    VIX_HANDLE_TYPE_SNAPSHOT
+};
 
-=======
->>>>>>> initial commit
+typedef struct {
+    uint32_t object_type;
+    uint32_t object_version;
+    uint32_t ref_count;
+} vix_object_ctx;
+
+typedef struct {
+    vix_object_ctx header;
+} vix_host_ctx;
+
+typedef struct {
+    vix_object_ctx header;
+} vix_vm_ctx;
+
+typedef struct {
+    vix_object_ctx header;
+} vix_snapshot_ctx;
+
 #endif

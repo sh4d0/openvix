@@ -101,6 +101,8 @@ def manage(generate_sln=True, build_sln=False, test_sln=False, **kwargs):
 
     if generate_sln is True:
         generate(**kwargs)
+    else:
+        raise Exception('Did not enable at least one of "generate", "build" or "test"');
 
 
 def main(argv=sys.argv[1:]):
